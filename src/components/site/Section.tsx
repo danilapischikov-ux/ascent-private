@@ -27,13 +27,14 @@ export function Section({
       {image && (
         <div className="absolute inset-0 z-0" aria-hidden="true">
           <div
-            className="section-media absolute inset-0 bg-cover opacity-34 md:opacity-42"
+            className="section-media absolute inset-0 bg-cover opacity-28 md:opacity-36 lg:opacity-40"
             style={{
               backgroundImage: `url(${image})`,
               backgroundPosition: imagePosition,
             }}
           />
-          <div className="absolute inset-0 fine-grid opacity-55" />
+          <div className="absolute inset-0 section-image-wash" />
+          <div className="absolute inset-0 fine-grid opacity-35" />
           <div className="absolute inset-0 section-overlay" />
           <div className="absolute inset-0 section-glow" />
         </div>

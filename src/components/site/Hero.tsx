@@ -27,10 +27,11 @@ export function Hero() {
     >
       <div className="absolute inset-0 z-0" aria-hidden="true">
         <div
-          className="absolute inset-0 bg-cover bg-center opacity-70"
+          className="hero-media absolute inset-0 bg-cover bg-center opacity-62 md:opacity-68"
           style={{ backgroundImage: `url(${heroImage})` }}
         />
-        <div className="absolute inset-0 fine-grid opacity-55" />
+        <div className="absolute inset-0 hero-image-wash" />
+        <div className="absolute inset-0 fine-grid opacity-35" />
         <div className="absolute inset-0 hero-overlay" />
         <div className="absolute inset-0 hero-vignette" />
       </div>
