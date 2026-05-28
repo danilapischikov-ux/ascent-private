@@ -125,14 +125,17 @@ export function Faq() {
             <AccordionItem
               key={item.q}
               value={`item-${index}`}
-              className="border-border/60 px-5 md:px-7"
+              className="border-border/60 px-4 sm:px-5 md:px-7"
             >
-              <AccordionTrigger className="text-left font-normal text-muted-foreground leading-relaxed hover:text-gold hover:no-underline py-6">
-                <span style={{ fontSize: "1.35rem", lineHeight: "1.45", fontWeight: 400 }}>
+              <AccordionTrigger className="text-left font-normal text-muted-foreground leading-relaxed hover:text-gold hover:no-underline py-5 sm:py-6">
+                <span
+                  className="text-lg sm:text-xl md:text-[1.35rem]"
+                  style={{ lineHeight: "1.45", fontWeight: 400 }}
+                >
                   {item.q}
                 </span>
               </AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground leading-relaxed text-justify pb-7">
+              <AccordionContent className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify pb-6 sm:pb-7">
                 {item.a}
               </AccordionContent>
             </AccordionItem>

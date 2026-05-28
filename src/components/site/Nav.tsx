@@ -30,9 +30,9 @@ export function Nav() {
           : "bg-gradient-to-b from-background/70 to-transparent"
       }`}
     >
-      <div className="mx-auto max-w-7xl px-5 lg:px-10 min-h-20 flex items-center gap-5 py-3">
+      <div className="mx-auto max-w-7xl px-4 sm:px-5 lg:px-10 min-h-16 sm:min-h-20 flex items-center gap-5 py-2 sm:py-3">
         <a href="/#top" className="flex items-center gap-3 shrink-0" onClick={() => setOpen(false)}>
-          <img src={logo} alt="Ascent Private" className="h-11 w-auto rounded-sm" />
+          <img src={logo} alt="Ascent Private" className="h-10 sm:h-11 w-auto rounded-sm" />
         </a>
 
         <nav className="hidden xl:flex absolute left-1/2 -translate-x-1/2 items-center justify-center gap-5">
@@ -51,7 +51,7 @@ export function Nav() {
           type="button"
           aria-label="Меню"
           onClick={() => setOpen((value) => !value)}
-          className="xl:hidden ml-auto size-11 inline-flex items-center justify-center border border-border text-foreground hover:border-gold-soft hover:text-gold transition"
+          className="xl:hidden ml-auto size-10 sm:size-11 inline-flex items-center justify-center border border-border text-foreground hover:border-gold-soft hover:text-gold transition"
         >
           {open ? <X className="size-5" /> : <Menu className="size-5" />}
         </button>
@@ -59,7 +59,7 @@ export function Nav() {
 
       {open && (
         <div className="xl:hidden border-t border-border bg-background/96 backdrop-blur-xl">
-          <nav className="mx-auto max-w-7xl px-5 py-5 grid gap-1">
+          <nav className="mx-auto max-w-7xl px-4 sm:px-5 py-4 sm:py-5 grid gap-1">
             {links.map((l) => (
               <a
                 key={l.href}

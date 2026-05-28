@@ -53,11 +53,11 @@ export function Why() {
       }
       subtitle="Ascent Private создан для инвесторов, которым недостаточно поверхностных обзоров рынка, общих рекомендаций и хаотичных инвестиционных идей. Наш подход особенно ценен для тех, кто работает с крупным капиталом и понимает, что цена ошибки на рынке может быть высокой. Мы не продаём обещания доходности — мы создаём аналитическую среду, в которой инвестор может принимать более осознанные решения."
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border/45 border border-border/45 reveal reveal-delay-1">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-px bg-border/45 border border-border/45 reveal reveal-delay-1">
         {advantages.map((advantage, index) => (
           <article
             key={advantage.title}
-            className="ascent-card bg-card/82 backdrop-blur-md p-6 md:p-8 transition"
+            className="ascent-card bg-card/82 backdrop-blur-md p-5 sm:p-6 md:p-8 transition"
           >
             <div className="flex items-baseline gap-4 mb-5">
               <span className="text-xs tracking-[0.28em] text-gold/78">
@@ -65,8 +65,10 @@ export function Why() {
               </span>
               <div className="h-px flex-1 bg-gold/25" />
             </div>
-            <h3 className="text-2xl text-gold leading-tight mb-5">{advantage.title}</h3>
-            <p className="text-sm text-muted-foreground leading-relaxed text-justify">
+            <h3 className="text-[1.55rem] sm:text-2xl text-gold leading-tight mb-5">
+              {advantage.title}
+            </h3>
+            <p className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify">
               {advantage.text}
             </p>
           </article>

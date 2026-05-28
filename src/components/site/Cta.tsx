@@ -2,7 +2,7 @@ export function Cta() {
   return (
     <section
       id="cta"
-      className="section-shell scroll-mt-28 relative bg-background py-5 md:py-7 lg:py-8 px-5 lg:px-10"
+      className="section-shell scroll-mt-24 md:scroll-mt-28 relative bg-background py-5 md:py-7 lg:py-8 px-4 sm:px-5 lg:px-10"
     >
       <div className="relative z-10 mx-auto max-w-7xl">
         <div className="mx-auto max-w-4xl text-center reveal">

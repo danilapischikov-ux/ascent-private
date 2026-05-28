@@ -98,16 +98,21 @@ export function Audience() {
       }
       subtitle="Ascent Private подходит инвесторам, которые уже воспринимают капитал как систему, а не как набор случайных сделок. Мы работаем с теми, кому важно понимать рынок глубже: видеть не только потенциальную доходность, но и риск, сценарии, ограничения, волатильность и логику принятия решений."
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border/45 border border-border/45 reveal reveal-delay-1">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-border/45 border border-border/45 reveal reveal-delay-1">
         {items.map((item, index) => (
-          <article key={item.title} className="ascent-card bg-card/82 backdrop-blur-md p-6 md:p-8">
-            <div className="flex items-start gap-5">
-              <span className="size-12 border border-gold-soft text-gold text-xs tracking-[0.18em] flex items-center justify-center shrink-0">
+          <article
+            key={item.title}
+            className="ascent-card bg-card/82 backdrop-blur-md p-5 sm:p-6 md:p-8"
+          >
+            <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-5">
+              <span className="size-11 sm:size-12 border border-gold-soft text-gold text-xs tracking-[0.18em] flex items-center justify-center shrink-0">
                 {String(index + 1).padStart(2, "0")}
               </span>
               <div>
-                <h3 className="text-2xl text-gold leading-tight mb-4">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed text-justify">
+                <h3 className="text-[1.55rem] sm:text-2xl text-gold leading-tight mb-4">
+                  {item.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify">
                   {item.text}
                 </p>
                 <h3 className="mt-6 text-xl text-gold mb-3">
@@ -130,8 +135,8 @@ export function Audience() {
         ))}
       </div>
 
-      <div className="ascent-card mt-12 bg-background/78 backdrop-blur-md p-7 md:p-10 text-center reveal reveal-delay-2">
-        <div className="mx-auto flex max-w-4xl flex-col items-center gap-7">
+      <div className="ascent-card mt-8 sm:mt-12 bg-background/78 backdrop-blur-md p-6 sm:p-7 md:p-10 text-center reveal reveal-delay-2">
+        <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 sm:gap-7">
           <p className="text-xs uppercase tracking-[0.24em] text-gold">
             Не уверены, подходит ли вам формат Ascent Private?
           </p>

@@ -153,6 +153,12 @@
     scroll-behavior: smooth;
   }
 
+  html,
+  body {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
@@ -166,6 +172,10 @@
   }
   p {
     line-height: 1.75;
+  }
+
+  img {
+    max-width: 100%;
   }
 
   h1,
@@ -397,10 +407,28 @@
     font-size: 1rem;
     line-height: 1.68;
   }
+  .section-shell::before,
+  .section-shell::after {
+    height: 4.5rem;
+  }
+  .section-media {
+    mask-image: none;
+  }
+  .hero-overlay,
+  .section-overlay {
+    background: linear-gradient(
+      90deg,
+      var(--background) 0%,
+      oklch(0.125 0.006 70 / 88%) 64%,
+      oklch(0.125 0.006 70 / 72%) 100%
+    );
+  }
   .ascent-button {
     width: 100%;
     letter-spacing: 0.16em;
     padding-inline: 1rem;
+    text-align: center;
+    white-space: normal;
   }
 }
 

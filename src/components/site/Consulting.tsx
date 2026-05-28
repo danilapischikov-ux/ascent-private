@@ -76,7 +76,7 @@ export function Consulting() {
       subtitle="Мы предоставляем продвинутые консультационные услуги, сценарное моделирование и торговые стратегии, специализируясь на рынках акций и опционов США, оценкой контроля риска, аналитическим сопровождением и регулярной отчетностью."
     >
       <div className="reveal reveal-delay-1">
-        <div className="mx-auto mb-10 md:mb-12 max-w-4xl text-center">
+        <div className="mx-auto mb-8 sm:mb-10 md:mb-12 max-w-4xl text-center">
           <p
             className="text-xl md:text-2xl text-foreground leading-relaxed"
             style={{ fontFamily: "var(--font-display)", fontWeight: 500, letterSpacing: 0 }}
@@ -96,21 +96,23 @@ export function Consulting() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6 lg:gap-8">
           {service.map(({ icon: Icon, title, text, listLabel, points }) => (
             <article
               key={title}
-              className="ascent-card bg-card/82 backdrop-blur-md p-6 md:p-7 transition"
+              className="ascent-card bg-card/82 backdrop-blur-md p-5 sm:p-6 md:p-7 transition"
             >
               <div className="mb-5 flex items-center gap-4">
                 <div className="size-12 flex shrink-0 items-center justify-center border border-gold-soft text-gold">
                   <Icon className="size-5" />
                 </div>
-                <h3 className="text-2xl text-gold leading-tight">{title}</h3>
+                <h3 className="text-[1.55rem] sm:text-2xl text-gold leading-tight">{title}</h3>
               </div>
-              <p className="text-sm text-muted-foreground leading-relaxed text-justify">{text}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify">
+                {text}
+              </p>
               <h3 className="mt-6 mb-3 text-xl text-gold">{listLabel}</h3>
-              <ul className="grid grid-cols-2 gap-x-5 gap-y-2.5">
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-2.5">
                 {points.map((point) => (
                   <li
                     key={point}

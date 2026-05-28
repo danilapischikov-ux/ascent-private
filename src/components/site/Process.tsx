@@ -122,38 +122,40 @@ export function Process() {
         {steps.map((step) => (
           <article
             key={step.step}
-            className="ascent-card bg-background/78 backdrop-blur-md p-6 md:p-8 transition"
+            className="ascent-card bg-background/78 backdrop-blur-md p-5 sm:p-6 md:p-8 transition"
           >
-            <div className="mb-5 flex items-start gap-4">
-              <h3 className="shrink-0 text-2xl text-gold leading-tight">{step.step}</h3>
-              <h3 className="text-2xl text-gold leading-tight">{step.title}</h3>
+            <div className="mb-5 flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
+              <h3 className="shrink-0 text-[1.55rem] sm:text-2xl text-gold leading-tight">
+                {step.step}
+              </h3>
+              <h3 className="text-[1.55rem] sm:text-2xl text-gold leading-tight">{step.title}</h3>
             </div>
 
             <div className="grid gap-4">
               {step.description.map((paragraph) => (
                 <p
                   key={paragraph}
-                  className="text-sm text-muted-foreground leading-relaxed text-justify"
+                  className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify"
                 >
                   {paragraph}
                 </p>
               ))}
             </div>
 
-            <div className="mt-6 pt-5 border-t border-border/55">
+            <div className="mt-5 sm:mt-6 pt-5 border-t border-border/55">
               <h3 className="text-xl text-gold mb-3">Цель этапа:</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed text-justify">
+              <p className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify">
                 {step.goal}
               </p>
             </div>
 
-            <div className="mt-6 pt-5 border-t border-border/55">
+            <div className="mt-5 sm:mt-6 pt-5 border-t border-border/55">
               <h3 className="text-xl text-gold mb-3">Польза для клиента:</h3>
               <div className="grid gap-4">
                 {step.benefit.map((paragraph, index) => (
                   <p
                     key={index}
-                    className="text-sm text-muted-foreground leading-relaxed text-justify"
+                    className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify"
                   >
                     {paragraph}
                   </p>

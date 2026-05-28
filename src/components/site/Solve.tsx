@@ -55,25 +55,26 @@ export function Solve() {
       }
       subtitle="На рынке много возможностей, но без системы они превращаются в источник стресса. Ascent Private помогает отделять рыночный шум от структурированной аналитики и заранее понимать возможные риски."
     >
-      <div className="flex flex-col gap-6 md:gap-8 reveal reveal-delay-1">
+      <div className="flex flex-col gap-5 md:gap-8 reveal reveal-delay-1">
         {cardRows.map((row, rowIndex) => (
           <div
             key={rowIndex}
-            className="grid grid-cols-3 gap-px bg-border/45 border border-border/45"
-            style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
+            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-px bg-border/45 border border-border/45"
           >
             {row.map((card) => (
               <article
                 key={card.title}
-                className="ascent-card bg-card/82 backdrop-blur-md p-4 md:p-8 min-h-[24rem] min-w-0 group transition flex flex-col"
+                className="ascent-card bg-card/82 backdrop-blur-md p-5 md:p-7 xl:p-8 min-h-0 xl:min-h-[24rem] min-w-0 group transition flex flex-col"
               >
-                <h3 className="text-2xl text-gold mb-1 leading-tight md:min-h-16">{card.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed text-justify md:min-h-28">
+                <h3 className="text-[1.55rem] sm:text-2xl text-gold mb-1 leading-tight xl:min-h-16">
+                  {card.title}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify xl:min-h-28">
                   {card.text}
                 </p>
                 <div className="mt-2 pt-5 border-t border-border/60">
                   <h3 className="text-xl text-gold mb-3">Что мы делаем</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed text-justify">
+                  <p className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify">
                     {card.action}
                   </p>
                 </div>

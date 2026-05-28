@@ -11,9 +11,9 @@ const links = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background px-5 lg:px-10">
-      <div className="mx-auto max-w-7xl py-14 md:py-18">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+    <footer className="border-t border-border bg-background px-4 sm:px-5 lg:px-10">
+      <div className="mx-auto max-w-7xl py-10 sm:py-12 md:py-18">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
           <div className="lg:col-span-5">
             <img src={logo} alt="ASCENT PRIVATE" className="h-14 w-auto rounded-sm mb-6" />
             <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
@@ -40,7 +40,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border">
+        <div className="mt-10 sm:mt-12 pt-7 sm:pt-8 border-t border-border">
           <p className="text-xs text-muted-foreground/82 leading-relaxed">
             Ascent Private не является зарегистрированным инвестиционным консультантом (RIA),
             брокером-дилером, финансовым аналитиком, брокерской компанией или инвестиционной фирмой.
