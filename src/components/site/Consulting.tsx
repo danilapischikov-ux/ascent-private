@@ -94,6 +94,14 @@ export function Consulting() {
             Наша задача — не просто искать доходность, а выстраивать управляемый процесс, где каждое
             решение имеет логику, ограничения и сценарий действий.
           </p>
+          <div className="mt-8 flex justify-center">
+            <a
+              href="https://t.me/+qAf6qjG9MbFiMGVi"
+              className="ascent-button text-primary-foreground bg-gradient-gold shadow-gold"
+            >
+              Получить доступ
+            </a>
+          </div>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6 lg:gap-8">
