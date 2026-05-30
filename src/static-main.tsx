@@ -13,6 +13,8 @@ import { Footer } from "@/components/site/Footer";
 import { Toaster } from "@/components/ui/sonner";
 import "./styles.css";
 
+(window as Window & { __ASCENT_STATIC_BUILD__?: string }).__ASCENT_STATIC_BUILD__ = "2026-05-30-01";
+
 function StaticApp() {
   return (
     <main className="min-h-screen bg-background text-foreground">
