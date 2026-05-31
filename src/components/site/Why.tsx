@@ -1,4 +1,4 @@
-import type { CSSProperties, MouseEvent } from "react";
+import type { CSSProperties, PointerEvent } from "react";
 import { useState } from "react";
 import { Section } from "./Section";
 import whyImage from "../../../Почему Ascent Private.png";
@@ -45,7 +45,7 @@ const advantages = [
 export function Why() {
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const handleCarouselMove = (event: MouseEvent<HTMLDivElement>) => {
+  const handleCarouselMove = (event: PointerEvent<HTMLDivElement>) => {
     const rect = event.currentTarget.getBoundingClientRect();
     const progress = Math.min(Math.max((event.clientX - rect.left) / rect.width, 0), 1);
     const nextIndex = Math.round(progress * (advantages.length - 1));
@@ -64,7 +64,7 @@ export function Why() {
       }
       subtitle="Ascent Private создан для инвесторов, которым недостаточно поверхностных обзоров рынка, общих рекомендаций и хаотичных инвестиционных идей. Наш подход особенно ценен для тех, кто работает с крупным капиталом и понимает, что цена ошибки на рынке может быть высокой. Мы не продаём обещания доходности — мы создаём аналитическую среду, в которой инвестор может принимать более осознанные решения."
     >
-      <div className="why-carousel reveal reveal-delay-1" onMouseMove={handleCarouselMove}>
+      <div className="why-carousel reveal reveal-delay-1" onPointerMove={handleCarouselMove}>
         {advantages.map((advantage, index) => {
           const offset = index - activeIndex;
           const distance = Math.min(Math.abs(offset), 4);
@@ -76,7 +76,7 @@ export function Why() {
               data-active={index === activeIndex}
               style={
                 {
-                  "--why-x": `${offset * 13}rem`,
+                  "--why-x": `calc(${offset} * var(--why-card-spacing))`,
                   "--why-y": `${distance * 0.7}rem`,
                   "--why-rotate": `${offset * -5}deg`,
                   "--why-scale": Math.max(0.42, 1 - distance * 0.16),
@@ -100,6 +100,19 @@ export function Why() {
             </article>
           );
         })}
+      </div>
+      <div className="why-carousel-controls reveal reveal-delay-2" aria-label="Выбор причины">
+        {advantages.map((advantage, index) => (
+          <button
+            key={advantage.title}
+            type="button"
+            className="why-carousel-dot"
+            data-active={activeIndex === index}
+            onClick={() => setActiveIndex(index)}
+            aria-label={`Показать причину ${index + 1}`}
+            aria-pressed={activeIndex === index}
+          />
+        ))}
       </div>
     </Section>
   );

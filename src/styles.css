@@ -248,13 +248,15 @@
   }
   .consulting-slider {
     position: relative;
+    --consulting-gap: 1.25rem;
+    --consulting-step: calc(50% + (var(--consulting-gap) / 2));
   }
   .consulting-slider-window {
     overflow: hidden;
   }
   .consulting-slider-track {
     display: flex;
-    gap: 1.25rem;
+    gap: var(--consulting-gap);
     width: 100%;
     transform: translate3d(0, 0, 0);
     will-change: transform;
@@ -264,17 +266,17 @@
     transition: transform 780ms cubic-bezier(0.18, 0.72, 0.16, 1);
   }
   .consulting-slider-track[data-phase="next"] {
-    transform: translate3d(calc(-50% - 0.625rem), 0, 0);
+    transform: translate3d(calc(-1 * var(--consulting-step)), 0, 0);
   }
   .consulting-slider-track[data-phase="previous-setup"] {
     transition: none;
-    transform: translate3d(calc(-50% - 0.625rem), 0, 0);
+    transform: translate3d(calc(-1 * var(--consulting-step)), 0, 0);
   }
   .consulting-slider-track[data-phase="previous"] {
     transform: translate3d(0, 0, 0);
   }
   .consulting-slider-card {
-    flex: 0 0 calc((100% - 1.25rem) / 2);
+    flex: 0 0 calc((100% - var(--consulting-gap)) / 2);
     min-height: 100%;
   }
   .consulting-slider-arrow {
@@ -327,10 +329,13 @@
   }
   .why-carousel {
     position: relative;
+    --why-card-spacing: clamp(8rem, 18vw, 13rem);
+    --why-card-width: clamp(18rem, 42vw, 31rem);
     min-height: 29rem;
     overflow: hidden;
     perspective: 1100px;
     cursor: ew-resize;
+    touch-action: pan-y;
     -webkit-mask-image: linear-gradient(
       90deg,
       transparent 0%,
@@ -356,7 +361,7 @@
     position: absolute;
     left: 50%;
     top: 1rem;
-    width: clamp(17rem, 42vw, 31rem);
+    width: var(--why-card-width);
     min-height: auto;
     max-height: none;
     overflow: hidden;
@@ -393,6 +398,33 @@
   }
   .why-carousel-card:not([data-active="true"]) {
     pointer-events: none;
+  }
+  .why-carousel-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .why-carousel-dot {
+    width: 0.85rem;
+    height: 0.85rem;
+    border-radius: 999px;
+    border: 1px solid oklch(0.82 0.115 82 / 56%);
+    background: oklch(0.82 0.115 82 / 24%);
+    transition:
+      transform 220ms ease,
+      background-color 220ms ease,
+      border-color 220ms ease,
+      box-shadow 220ms ease;
+  }
+  .why-carousel-dot:hover,
+  .why-carousel-dot[data-active="true"] {
+    transform: scale(1.24);
+    border-color: var(--gold);
+    background: var(--gold);
+    box-shadow: 0 0 18px oklch(0.82 0.115 82 / 30%);
   }
   .faq-category-tabs {
     display: flex;
@@ -848,10 +880,59 @@
   }
 }
 
+@media (max-width: 1023px) {
+  .consulting-slider {
+    --consulting-gap: 1rem;
+  }
+  .why-carousel {
+    --why-card-spacing: clamp(5.5rem, 18vw, 8.75rem);
+    --why-card-width: clamp(19rem, 58vw, 28rem);
+    min-height: 31rem;
+  }
+  .why-carousel-card {
+    top: 0.75rem;
+  }
+}
+
 @media (max-width: 767px) {
   body {
     font-size: 1rem;
     line-height: 1.68;
+  }
+  .consulting-slider {
+    --consulting-gap: 0.875rem;
+    --consulting-step: calc(100% + var(--consulting-gap));
+  }
+  .consulting-slider-card {
+    flex-basis: 100%;
+  }
+  .consulting-slider-arrow {
+    width: 2.85rem;
+    height: 2.85rem;
+  }
+  .why-carousel {
+    --why-card-spacing: 4.15rem;
+    --why-card-width: min(86vw, 24rem);
+    min-height: 35rem;
+    cursor: default;
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent 0%,
+      black 4%,
+      black 96%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(90deg, transparent 0%, black 4%, black 96%, transparent 100%);
+  }
+  .why-carousel-card {
+    top: 0.5rem;
+  }
+  .why-carousel-card:not([data-active="true"]) {
+    opacity: 0.2;
+  }
+  .why-carousel-controls {
+    gap: 0.62rem;
+    margin-top: 1rem;
   }
   .section-shell::before,
   .section-shell::after {
