@@ -21,7 +21,7 @@ const steps: Array<{
 }> = [
   {
     step: "Шаг 1.",
-    title: "Риск-профилирование",
+    title: "Диагностика риск-профиля",
     description: [
       "На первом этапе анализируетсяриск- профиль клиента: его инвестиционный горизонт, опыт работы с рынком, отношение к риску, интерес к инструментам, уровень вовлечённости и способность выдерживать рыночную неопределённость.",
       "Это не формальная анкета и не поверхностная классификация. Для AscentPrivate важно понять, как клиент воспринимает риск, какие сценарии для него приемлемы, какой уровень волатильности вызывает дискомфорт и какие решения могут быть для него избыточно агрессивными.",
@@ -38,7 +38,7 @@ const steps: Array<{
   },
   {
     step: "Шаг 2.",
-    title: "Формирование аналитического фокуса",
+    title: "Определение аналитического фокуса",
     description: [
       "После определения профиля мы формируем аналитический фокус: какие сектора, инструменты и типы стратегий на рынке США соответствуют интересам клиента и требуют внимания. Также определяются критерии отбора этих инструментов. Критерии синхронзируются с реальными рыночными условиями",
       "Мы не анализируем всё подряд, а выделяем те направления, которые соответствуют профилю клиента, его горизонту, капиталу, допустимому риску и уровню понимания инструментов.",
@@ -54,7 +54,7 @@ const steps: Array<{
   },
   {
     step: "Шаг 3.",
-    title: "Сценарное моделирование",
+    title: "Моделирование рыночных сценариев",
     description: [
       'Модель представляет собой многослойный анализ опционный конструкций, в которой объединяется историческая структура, риск-ориентация, событийная фильтрация и контекст рынка. Тем самым модель минимизирует попадание в искажение котировок, после чего пропускает "кандидатов" через ряд кросс-факторных ограничений: трендовые, волатильностные, ликвидностные, фундаментальные и позиционно-структурные, всего 24 параметра. Далее идеи согласовываются с аналитиками и риск-менеджерами.',
       "Сценарное моделирование позволяет заранее увидеть не только потенциальную возможность, но и границы риска: что произойдёт при неблагоприятном движении цены, изменении волатильности, снижении ликвидности, гэпе, ускорении временного распада или изменении рыночного контекста.",
@@ -71,7 +71,7 @@ const steps: Array<{
   },
   {
     step: "Шаг 4.",
-    title: "Аналитический отчёт по сформированной идее",
+    title: "Экспертное заключение по идее",
     description: [
       "После сценарного анализа клиент получает структурированный аналитический материал. Это не поток мнений и не краткий рыночный комментарий, а документ, в котором собрана логика идеи, ключевые параметры, риск-факторы, сценарии и ограничения.",
       "Клиент может спокойно изучить материал, вернуться к нему, сопоставить его со своим пониманием рынка и при необходимости обсудить с личным финансовымконсультантом или построить собственную торговую систему. Отчёт снижает зависимость от устных объяснений, эмоций и субъективных впечатлений, так как его можно проверить, сравнить с другими источниками и использовать как аналитическую основу для дальнейшего размышления.",
@@ -87,7 +87,7 @@ const steps: Array<{
   },
   {
     step: "Шаг 5.",
-    title: "Отчётность и оценка эффективности",
+    title: "Мониторинг результата и отчётность",
     description: [
       "Финальный этап работы — это структурированная отчётность. Для AscentPrivate отчётность —способ показать клиенту, что происходило с рыночной идеей, как менялись ключевые параметры, какие риски проявились и насколько исходная аналитическая логика соответствовала реальному движению рынка.",
       "Мы считаем, что профессиональный подход должен быть прозрачным не только до принятия решения, но и после него. Клиенту важно понимать, какие сценарии реализовались и какие факторы повлияли на результат.Отчётность помогает оценивать не только итоговый результат, но и качество самого процесса: насколько точно были определены риски, насколько понятной была сценарная логика, насколько своевременно учитывались изменения волатильности, ликвидности, цены и рыночного контекста.",
@@ -118,59 +118,63 @@ export function Process() {
       }
       subtitle="Мы выстраиваем работу как структурный аналитический процесс: от понимания задач инвестора до регулярных исследований, сценарных разборов и оценки рисков."
     >
-      <div className="flex flex-col gap-px bg-border/45 border border-border/45 reveal reveal-delay-1">
+      <div className="process-timeline flex flex-col gap-px bg-border/45 border border-border/45 reveal reveal-delay-1">
         {steps.map((step) => (
           <article
             key={step.step}
-            className="ascent-card bg-background/78 backdrop-blur-md p-5 sm:p-6 md:p-8 transition"
+            tabIndex={0}
+            className="ascent-card process-step-card process-disclosure-card visual-mark bg-background/58 backdrop-blur-md p-5 sm:p-6 md:p-8 transition"
           >
-            <div className="mb-5 flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
+            <span className="process-marker" aria-hidden="true" />
+            <div className="process-step-heading flex flex-col sm:flex-row sm:items-start gap-2 sm:gap-4">
               <h3 className="shrink-0 text-[1.55rem] sm:text-2xl text-gold leading-tight">
                 {step.step}
               </h3>
               <h3 className="text-[1.55rem] sm:text-2xl text-gold leading-tight">{step.title}</h3>
             </div>
 
-            <div className="grid gap-4">
-              {step.description.map((paragraph) => (
-                <p
-                  key={paragraph}
-                  className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify"
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-
-            <div className="mt-5 sm:mt-6 pt-5 border-t border-border/55">
-              <h3 className="text-xl text-gold mb-3">Цель этапа:</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify">
-                {step.goal}
-              </p>
-            </div>
-
-            <div className="mt-5 sm:mt-6 pt-5 border-t border-border/55">
-              <h3 className="text-xl text-gold mb-3">Польза для клиента:</h3>
+            <div className="process-step-content">
               <div className="grid gap-4">
-                {step.benefit.map((paragraph, index) => (
+                {step.description.map((paragraph) => (
                   <p
-                    key={index}
+                    key={paragraph}
                     className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify"
                   >
                     {paragraph}
                   </p>
                 ))}
               </div>
-            </div>
 
-            {step.button && (
-              <a
-                href="https://t.me/InvestProfileScore_bot"
-                className="ascent-button mt-7 text-primary-foreground bg-gradient-gold shadow-gold"
-              >
-                {step.button}
-              </a>
-            )}
+              <div className="mt-5 sm:mt-6 pt-5 border-t border-border/55">
+                <h3 className="text-xl text-gold mb-3">Цель этапа:</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify">
+                  {step.goal}
+                </p>
+              </div>
+
+              <div className="mt-5 sm:mt-6 pt-5 border-t border-border/55">
+                <h3 className="text-xl text-gold mb-3">Польза для клиента:</h3>
+                <div className="grid gap-4">
+                  {step.benefit.map((paragraph, index) => (
+                    <p
+                      key={index}
+                      className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify"
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </div>
+
+              {step.button && (
+                <a
+                  href="https://t.me/InvestProfileScore_bot"
+                  className="ascent-button mt-7 text-primary-foreground bg-gradient-gold shadow-gold"
+                >
+                  {step.button}
+                </a>
+              )}
+            </div>
           </article>
         ))}
       </div>

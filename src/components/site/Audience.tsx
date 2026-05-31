@@ -98,44 +98,50 @@ export function Audience() {
       }
       subtitle="Ascent Private подходит инвесторам, которые уже воспринимают капитал как систему, а не как набор случайных сделок. Мы работаем с теми, кому важно понимать рынок глубже: видеть не только потенциальную доходность, но и риск, сценарии, ограничения, волатильность и логику принятия решений."
     >
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-px bg-border/45 border border-border/45 reveal reveal-delay-1">
-        {items.map((item, index) => (
-          <article
-            key={item.title}
-            className="ascent-card bg-card/82 backdrop-blur-md p-5 sm:p-6 md:p-8"
-          >
-            <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-5">
-              <span className="size-11 sm:size-12 border border-gold-soft text-gold text-xs tracking-[0.18em] flex items-center justify-center shrink-0">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <div>
-                <h3 className="text-[1.55rem] sm:text-2xl text-gold leading-tight mb-4">
-                  {item.title}
-                </h3>
-                <p className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify">
-                  {item.text}
-                </p>
-                <h3 className="mt-6 text-xl text-gold mb-3">
-                  Критерии, по которым вы нам подходите
-                </h3>
-                <ul className="space-y-2">
-                  {item.criteria.map((criterion) => (
-                    <li
-                      key={criterion}
-                      className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed"
-                    >
-                      <span className="mt-2 size-1.5 bg-gold rounded-full shrink-0" />
-                      <span>{criterion}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+      <div className="audience-marquee reveal reveal-delay-1">
+        <div className="audience-marquee-track">
+          {[0, 1].map((loopIndex) => (
+            <div key={loopIndex} className="audience-marquee-group" aria-hidden={loopIndex === 1}>
+              {items.map((item, index) => (
+                <article
+                  key={`${loopIndex}-${item.title}`}
+                  className="ascent-card audience-marquee-card visual-mark bg-card/62 backdrop-blur-md p-5 sm:p-6 md:p-8"
+                >
+                  <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-5">
+                    <span className="size-11 sm:size-12 border border-gold-soft text-gold text-xs tracking-[0.18em] flex items-center justify-center shrink-0">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div>
+                      <h3 className="text-[1.55rem] sm:text-2xl text-gold leading-tight mb-4">
+                        {item.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify">
+                        {item.text}
+                      </p>
+                      <h3 className="mt-6 text-xl text-gold mb-3">
+                        Критерии, по которым вы нам подходите
+                      </h3>
+                      <ul className="space-y-2">
+                        {item.criteria.map((criterion) => (
+                          <li
+                            key={criterion}
+                            className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed"
+                          >
+                            <span className="mt-2 size-1.5 bg-gold rounded-full shrink-0" />
+                            <span>{criterion}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
-          </article>
-        ))}
+          ))}
+        </div>
       </div>
 
-      <div className="ascent-card mt-8 sm:mt-12 bg-background/78 backdrop-blur-md p-6 sm:p-7 md:p-10 text-center reveal reveal-delay-2">
+      <div className="ascent-card mt-8 sm:mt-12 bg-background/62 backdrop-blur-md p-6 sm:p-7 md:p-10 text-center reveal reveal-delay-2">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-6 sm:gap-7">
           <p className="text-xs uppercase tracking-[0.24em] text-gold">
             Не уверены, подходит ли вам формат Ascent Private?

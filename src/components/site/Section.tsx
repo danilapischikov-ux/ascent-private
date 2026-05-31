@@ -27,7 +27,7 @@ export function Section({
       {image && (
         <div className="absolute inset-0 z-0" aria-hidden="true">
           <div
-            className="section-media absolute inset-0 bg-cover opacity-28 md:opacity-36 lg:opacity-40"
+            className="section-media absolute inset-0 bg-cover opacity-36 md:opacity-44 lg:opacity-50"
             style={{
               backgroundImage: `url(${image})`,
               backgroundPosition: imagePosition,

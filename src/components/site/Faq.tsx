@@ -4,6 +4,7 @@
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useState } from "react";
 import { Section } from "./Section";
 import faqImage from "../../../FAQ.png";
 
@@ -51,6 +52,10 @@ const faqs = [
   {
     q: "С какой суммой капитала имеет смысл обращаться?",
     a: "Формат Ascent Private наиболее полезен инвесторам, для которых решения на международных рынках имеют существенное значение и требуют более глубокого анализа. Ориентир — капитал от $50,000, так как многие опционные стратегии требуют обеспечения позиции и имеют чёткие условия по количеству базового актива в одном опционном контракте (1 опционный контракт = 100 акций). Минимальный депозит, ниже которого мы не рекомендуем пользоваться нашими идеями, — $20,000. Мы не оцениваем инвестора только по размеру капитала — важны также опыт, цели, понимание риска и готовность мыслить системно. Главный вопрос не “какая сумма”, а “нужен ли вам профессиональный аналитический слой для принятия решений”.",
+  },
+  {
+    q: "Сколько стоит аналитическое сопровождение Ascent Private?",
+    a: "Стоимость базового формата Ascent Private составляет $420 в месяц. Это фиксированная ежемесячная оплата за доступ к информационно-аналитическим материалам, сценарным разборам, идеям, риск-оценке и отчётности в рамках выбранного формата взаимодействия.\n\nОплата не является комиссией за управление активами, брокерской комиссией, платой за совершение сделок или вознаграждением за гарантированный финансовый результат. Ascent Private предоставляет аналитическую среду и материалы информационного характера, а все инвестиционные решения клиент принимает самостоятельно.\n\nДля клиентов с капиталом от $50,000 могут обсуждаться индивидуальные условия взаимодействия. Такой формат рассматривается отдельно после консультации, оценки задач клиента, риск-профиля, опыта и применимых юридических ограничений.",
   },
   {
     q: "Чем Ascent Private отличается от Telegram-каналов, брокерских обзоров и публичной аналитики?",
@@ -102,7 +107,33 @@ const faqs = [
   },
 ];
 
+const faqCategories = [
+  {
+    title: "О формате",
+    questionNumbers: [1, 4, 5, 13, 22],
+  },
+  {
+    title: "Рынок США и опционы",
+    questionNumbers: [7, 8, 9, 14, 15, 21],
+  },
+  {
+    title: "Условия участия",
+    questionNumbers: [11, 12, 18, 19, 20],
+  },
+  {
+    title: "Юридическая рамка",
+    questionNumbers: [2, 3, 6, 10, 16, 17, 23, 24],
+  },
+];
+
 export function Faq() {
+  const [activeCategory, setActiveCategory] = useState(0);
+  const selectedCategory = faqCategories[activeCategory];
+  const selectedFaqs = selectedCategory.questionNumbers.map((questionNumber) => ({
+    ...faqs[questionNumber - 1],
+    originalIndex: questionNumber - 1,
+  }));
+
   return (
     <Section
       id="faq"
@@ -116,15 +147,30 @@ export function Faq() {
       }
     >
       <div className="reveal reveal-delay-1">
+        <div className="faq-category-tabs mb-6 sm:mb-8" aria-label="Категории FAQ">
+          {faqCategories.map((category, index) => (
+            <button
+              key={category.title}
+              type="button"
+              className="faq-category-tab"
+              data-active={activeCategory === index}
+              onClick={() => setActiveCategory(index)}
+            >
+              [{category.title}]
+            </button>
+          ))}
+        </div>
+
         <Accordion
+          key={selectedCategory.title}
           type="single"
           collapsible
-          className="w-full border border-border/55 bg-card/70 backdrop-blur-md"
+          className="w-full border border-border/55 bg-card/54 backdrop-blur-md"
         >
-          {faqs.map((item, index) => (
+          {selectedFaqs.map((item) => (
             <AccordionItem
               key={item.q}
-              value={`item-${index}`}
+              value={`item-${item.originalIndex}`}
               className="border-border/60 px-4 sm:px-5 md:px-7"
             >
               <AccordionTrigger className="text-left font-normal text-muted-foreground leading-relaxed hover:text-gold hover:no-underline py-5 sm:py-6">
@@ -135,7 +181,7 @@ export function Faq() {
                   {item.q}
                 </span>
               </AccordionTrigger>
-              <AccordionContent className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify pb-6 sm:pb-7">
+              <AccordionContent className="whitespace-pre-line text-sm text-muted-foreground leading-relaxed text-left sm:text-justify pb-6 sm:pb-7">
                 {item.a}
               </AccordionContent>
             </AccordionItem>

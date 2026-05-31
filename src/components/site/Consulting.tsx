@@ -1,5 +1,8 @@
 ﻿import { FileBarChart, LineChart, Shield, Target } from "lucide-react";
 import { Section } from "./Section";
+import { useState } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import type { TransitionEvent } from "react";
 import consultingImage from "../../../Профессиональный Консалтинг.png";
 
 const service = [
@@ -62,6 +65,54 @@ const service = [
 ];
 
 export function Consulting() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [orderedIndices, setOrderedIndices] = useState(() => service.map((_, index) => index));
+  const [slidePhase, setSlidePhase] = useState<"idle" | "next" | "previous-setup" | "previous">(
+    "idle",
+  );
+
+  const goToPrevious = () => {
+    if (slidePhase !== "idle") return;
+
+    setOrderedIndices((current) => {
+      const previous = current[current.length - 1];
+      return [previous, ...current.slice(0, -1)];
+    });
+    setActiveIndex((current) => (current - 1 + service.length) % service.length);
+    setSlidePhase("previous-setup");
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setSlidePhase("previous");
+      });
+    });
+  };
+
+  const goToNext = () => {
+    if (slidePhase !== "idle") return;
+
+    setActiveIndex((current) => (current + 1) % service.length);
+    setSlidePhase("next");
+  };
+
+  const goToSlide = (index: number) => {
+    if (slidePhase !== "idle" || index === activeIndex) return;
+
+    setOrderedIndices(service.map((_, offset) => (index + offset) % service.length));
+    setActiveIndex(index);
+    setSlidePhase("idle");
+  };
+
+  const handleSliderTransitionEnd = (event: TransitionEvent<HTMLDivElement>) => {
+    if (event.target !== event.currentTarget) return;
+
+    if (slidePhase === "next") {
+      setOrderedIndices((current) => [...current.slice(1), current[0]]);
+    }
+
+    setSlidePhase("idle");
+  };
+
   return (
     <Section
       id="consulting"
@@ -104,35 +155,83 @@ export function Consulting() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6 lg:gap-8">
-          {service.map(({ icon: Icon, title, text, listLabel, points }) => (
-            <article
-              key={title}
-              className="ascent-card bg-card/82 backdrop-blur-md p-5 sm:p-6 md:p-7 transition"
+        <div className="consulting-slider">
+          <div className="mb-5 flex items-center justify-between gap-4">
+            <button
+              type="button"
+              className="consulting-slider-arrow"
+              onClick={goToPrevious}
+              aria-label="Предыдущая карточка"
             >
-              <div className="mb-5 flex items-center gap-4">
-                <div className="size-12 flex shrink-0 items-center justify-center border border-gold-soft text-gold">
-                  <Icon className="size-5" />
-                </div>
-                <h3 className="text-[1.55rem] sm:text-2xl text-gold leading-tight">{title}</h3>
-              </div>
-              <p className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify">
-                {text}
-              </p>
-              <h3 className="mt-6 mb-3 text-xl text-gold">{listLabel}</h3>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-2.5">
-                {points.map((point) => (
-                  <li
-                    key={point}
-                    className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed"
+              <ChevronLeft className="size-5" />
+            </button>
+            <button
+              type="button"
+              className="consulting-slider-arrow"
+              onClick={goToNext}
+              aria-label="Следующая карточка"
+            >
+              <ChevronRight className="size-5" />
+            </button>
+          </div>
+
+          <div className="consulting-slider-window" aria-live="polite">
+            <div
+              className="consulting-slider-track"
+              data-phase={slidePhase}
+              onTransitionEnd={handleSliderTransitionEnd}
+            >
+              {orderedIndices.map((cardIndex) => {
+                const { icon: Icon, title, text, listLabel, points } = service[cardIndex];
+
+                return (
+                  <article
+                    key={title}
+                    className="ascent-card consulting-slider-card visual-mark bg-card/62 backdrop-blur-md p-5 sm:p-6 md:p-7 transition"
                   >
-                    <span className="mt-2 size-1.5 bg-gold rounded-full shrink-0" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
+                    <div className="mb-5 flex items-center gap-4">
+                      <div className="size-12 flex shrink-0 items-center justify-center border border-gold-soft text-gold">
+                        <Icon className="size-5" />
+                      </div>
+                      <h3 className="text-[1.55rem] sm:text-2xl text-gold leading-tight">
+                        {title}
+                      </h3>
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify">
+                      {text}
+                    </p>
+                    <h3 className="mt-6 mb-3 text-xl text-gold">{listLabel}</h3>
+                    <ul className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-2.5">
+                      {points.map((point) => (
+                        <li
+                          key={point}
+                          className="flex items-start gap-3 text-sm text-muted-foreground leading-relaxed"
+                        >
+                          <span className="mt-2 size-1.5 bg-gold rounded-full shrink-0" />
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <span className="sr-only">Карточка {cardIndex + 1}</span>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="consulting-slider-dots" aria-label="Выбор карточки">
+            {service.map((item, index) => (
+              <button
+                key={item.title}
+                type="button"
+                className="consulting-slider-dot"
+                data-active={activeIndex === index}
+                onClick={() => goToSlide(index)}
+                aria-label={`Показать карточку ${index + 1}`}
+                aria-pressed={activeIndex === index}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </Section>

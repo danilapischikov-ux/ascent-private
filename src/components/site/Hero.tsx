@@ -76,7 +76,7 @@ export function Hero() {
           {theses.map((item) => (
             <article
               key={item.title}
-              className="ascent-card bg-background/72 backdrop-blur-md p-4 md:p-5"
+              className="ascent-card bg-background/56 backdrop-blur-md p-4 md:p-5"
             >
               <h3 className="text-xl text-gold mb-3">{item.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed text-justify">

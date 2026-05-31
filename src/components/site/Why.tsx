@@ -1,3 +1,5 @@
+import type { CSSProperties, MouseEvent } from "react";
+import { useState } from "react";
 import { Section } from "./Section";
 import whyImage from "../../../Почему Ascent Private.png";
 
@@ -41,6 +43,15 @@ const advantages = [
 ];
 
 export function Why() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleCarouselMove = (event: MouseEvent<HTMLDivElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const progress = Math.min(Math.max((event.clientX - rect.left) / rect.width, 0), 1);
+    const nextIndex = Math.round(progress * (advantages.length - 1));
+    setActiveIndex(nextIndex);
+  };
+
   return (
     <Section
       id="why"
@@ -53,26 +64,42 @@ export function Why() {
       }
       subtitle="Ascent Private создан для инвесторов, которым недостаточно поверхностных обзоров рынка, общих рекомендаций и хаотичных инвестиционных идей. Наш подход особенно ценен для тех, кто работает с крупным капиталом и понимает, что цена ошибки на рынке может быть высокой. Мы не продаём обещания доходности — мы создаём аналитическую среду, в которой инвестор может принимать более осознанные решения."
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-px bg-border/45 border border-border/45 reveal reveal-delay-1">
-        {advantages.map((advantage, index) => (
-          <article
-            key={advantage.title}
-            className="ascent-card bg-card/82 backdrop-blur-md p-5 sm:p-6 md:p-8 transition"
-          >
-            <div className="flex items-baseline gap-4 mb-5">
-              <span className="text-xs tracking-[0.28em] text-gold/78">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <div className="h-px flex-1 bg-gold/25" />
-            </div>
-            <h3 className="text-[1.55rem] sm:text-2xl text-gold leading-tight mb-5">
-              {advantage.title}
-            </h3>
-            <p className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify">
-              {advantage.text}
-            </p>
-          </article>
-        ))}
+      <div className="why-carousel reveal reveal-delay-1" onMouseMove={handleCarouselMove}>
+        {advantages.map((advantage, index) => {
+          const offset = index - activeIndex;
+          const distance = Math.min(Math.abs(offset), 4);
+
+          return (
+            <article
+              key={advantage.title}
+              className="ascent-card why-carousel-card visual-mark bg-card/62 backdrop-blur-md p-5 sm:p-6 md:px-8 md:py-8 transition"
+              data-active={index === activeIndex}
+              style={
+                {
+                  "--why-x": `${offset * 13}rem`,
+                  "--why-y": `${distance * 0.7}rem`,
+                  "--why-rotate": `${offset * -5}deg`,
+                  "--why-scale": Math.max(0.42, 1 - distance * 0.16),
+                  "--why-opacity": Math.max(0.34, 1 - distance * 0.16),
+                  zIndex: 20 - distance,
+                } as CSSProperties
+              }
+            >
+              <div className="flex items-baseline gap-4 mb-5">
+                <span className="text-xs tracking-[0.28em] text-gold/78">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <div className="h-px flex-1 bg-gold/25" />
+              </div>
+              <h3 className="text-[1.55rem] sm:text-2xl text-gold leading-tight mb-5">
+                {advantage.title}
+              </h3>
+              <p className="text-sm text-muted-foreground leading-relaxed text-left sm:text-justify">
+                {advantage.text}
+              </p>
+            </article>
+          );
+        })}
       </div>
     </Section>
   );
