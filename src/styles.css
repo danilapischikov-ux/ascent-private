@@ -405,7 +405,9 @@
     align-items: center;
     justify-content: center;
     gap: 0.75rem;
-    margin-top: 1.5rem;
+    position: relative;
+    z-index: 3;
+    margin-top: -5.5rem;
   }
   .why-carousel-dot {
     width: 0.85rem;
@@ -994,7 +996,7 @@
   }
   .why-carousel-controls {
     gap: 0.62rem;
-    margin-top: 0.4rem;
+    margin-top: -4.4rem;
   }
   .faq-category-tabs {
     justify-content: flex-start;
