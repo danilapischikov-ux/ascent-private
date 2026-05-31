@@ -477,13 +477,17 @@
     );
     mask-image: linear-gradient(90deg, transparent 0%, black 7%, black 93%, transparent 100%);
   }
+  .audience-marquee[data-selected="true"] {
+    min-height: 29rem;
+  }
   .audience-marquee-track {
     display: flex;
     width: max-content;
     animation: audience-scroll 96s linear infinite;
     will-change: transform;
   }
-  .audience-marquee:has(.audience-marquee-card:hover) .audience-marquee-track {
+  .audience-marquee:has(.audience-marquee-card:hover) .audience-marquee-track,
+  .audience-marquee[data-selected="true"] .audience-marquee-track {
     animation-play-state: paused;
   }
   .audience-marquee-group {
@@ -496,6 +500,23 @@
     flex: 0 0 clamp(18.5rem, 72vw, 28rem);
     width: clamp(18.5rem, 72vw, 28rem);
     min-height: 100%;
+    cursor: pointer;
+    transition:
+      transform 260ms ease,
+      border-color 260ms ease,
+      background-color 260ms ease,
+      box-shadow 260ms ease,
+      opacity 260ms ease;
+  }
+  .audience-marquee-card h3:first-of-type {
+    text-align: center;
+  }
+  .audience-marquee-card:focus-visible {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow:
+      0 0 0 1px oklch(0.82 0.115 82 / 46%),
+      0 0 34px oklch(0.82 0.115 82 / 16%);
   }
   .audience-marquee-card:hover {
     z-index: 8;
@@ -507,12 +528,53 @@
       0 0 0 1px oklch(0.82 0.115 82 / 42%),
       0 0 34px oklch(0.82 0.115 82 / 14%);
   }
+  .audience-marquee-focus {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 18;
+    width: min(92vw, 31rem);
+    transform: translate(-50%, -50%);
+    animation: audience-focus-in 280ms cubic-bezier(0.2, 0.72, 0.18, 1) both;
+    pointer-events: auto;
+  }
+  .audience-marquee-card-focused {
+    width: 100%;
+    min-height: auto;
+    flex: none;
+    border-color: var(--gold);
+    background-color: oklch(0.12 0.007 72);
+    box-shadow:
+      0 32px 90px oklch(0 0 0 / 56%),
+      0 0 0 1px oklch(0.82 0.115 82 / 48%),
+      0 0 44px oklch(0.82 0.115 82 / 20%);
+    transform: none;
+  }
+  .audience-marquee-card-focused::before {
+    background:
+      radial-gradient(ellipse at 92% 12%, oklch(0.82 0.115 82 / 12%), transparent 28%),
+      linear-gradient(135deg, oklch(0.13 0.008 72) 0%, oklch(0.105 0.006 72) 100%);
+    opacity: 1;
+  }
+  .audience-marquee-card-focused:hover {
+    transform: scale(1.015);
+  }
   @keyframes audience-scroll {
     from {
       transform: translate3d(0, 0, 0);
     }
     to {
       transform: translate3d(-50%, 0, 0);
+    }
+  }
+  @keyframes audience-focus-in {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -46%) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
     }
   }
   @media (prefers-reduced-motion: reduce) {
@@ -913,7 +975,7 @@
   .why-carousel {
     --why-card-spacing: 4.15rem;
     --why-card-width: min(86vw, 24rem);
-    min-height: 35rem;
+    min-height: 31rem;
     cursor: default;
     -webkit-mask-image: linear-gradient(
       90deg,
@@ -932,7 +994,18 @@
   }
   .why-carousel-controls {
     gap: 0.62rem;
-    margin-top: 1rem;
+    margin-top: 0.4rem;
+  }
+  .faq-category-tabs {
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding-inline: 0.1rem;
+    scroll-padding-inline: 0.1rem;
+  }
+  .faq-category-tab {
+    padding: 0.72rem 0.78rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.045em;
   }
   .section-shell::before,
   .section-shell::after {
