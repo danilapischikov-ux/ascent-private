@@ -173,7 +173,7 @@ export function Faq() {
               value={`item-${item.originalIndex}`}
               className="border-border/60 px-4 sm:px-5 md:px-7"
             >
-              <AccordionTrigger className="text-left font-normal text-muted-foreground leading-relaxed hover:text-gold hover:no-underline py-5 sm:py-6">
+              <AccordionTrigger className="faq-question-trigger text-left font-normal text-muted-foreground leading-relaxed hover:text-gold hover:no-underline py-5 sm:py-6">
                 <span
                   className="text-lg sm:text-xl md:text-[1.35rem]"
                   style={{ lineHeight: "1.45", fontWeight: 400 }}

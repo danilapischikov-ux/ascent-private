@@ -428,6 +428,9 @@
     box-shadow: 0 0 26px oklch(0.82 0.115 82 / 14%);
     transform: translateY(-1px);
   }
+  [data-state="open"] > .faq-question-trigger {
+    color: var(--gold);
+  }
   .audience-marquee {
     position: relative;
     margin-inline: calc(50% - 50vw);
