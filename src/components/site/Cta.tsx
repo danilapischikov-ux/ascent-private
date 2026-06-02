@@ -18,12 +18,13 @@ export function Cta() {
             США – начните с ознакомительного доступа.
           </p>
           <div className="mt-8 flex justify-center">
-            <a
-              href="https://t.me/+qAf6qjG9MbFiMGVi"
+            <button
+              type="button"
+              disabled
               className="ascent-button text-primary-foreground bg-gradient-gold shadow-gold"
             >
               Получить доступ
-            </a>
+            </button>
           </div>
         </div>
       </div>

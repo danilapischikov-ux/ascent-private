@@ -770,6 +770,19 @@
       var(--shadow-gold);
     transform: translateY(-1px);
   }
+  .ascent-button:disabled,
+  .ascent-button[aria-disabled="true"] {
+    cursor: default;
+    opacity: 0.58;
+    filter: saturate(0.72);
+    pointer-events: none;
+  }
+  .ascent-button:disabled::before,
+  .ascent-button:disabled::after,
+  .ascent-button[aria-disabled="true"]::before,
+  .ascent-button[aria-disabled="true"]::after {
+    display: none;
+  }
   .ascent-button::before {
     content: "";
     position: absolute;

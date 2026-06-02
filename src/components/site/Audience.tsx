@@ -220,12 +220,13 @@ export function Audience() {
             аналитической среде. Наблюдаете, оцениваете, используете. Далее, принимаете решение на
             сколько подходит вам сервис.
           </p>
-          <a
-            href="https://t.me/+qAf6qjG9MbFiMGVi"
+          <button
+            type="button"
+            disabled
             className="ascent-button text-primary-foreground bg-gradient-gold shadow-gold"
           >
             Получить доступ
-          </a>
+          </button>
         </div>
       </div>
     </Section>
