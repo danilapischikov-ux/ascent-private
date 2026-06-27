@@ -220,13 +220,12 @@ export function Audience() {
             аналитической среде. Наблюдаете, оцениваете, используете. Далее, принимаете решение на
             сколько подходит вам сервис.
           </p>
-          <button
-            type="button"
-            disabled
+          <a
+            href="https://t.me/AscentPrivate_bot"
             className="ascent-button text-primary-foreground bg-gradient-gold shadow-gold"
           >
             Получить доступ
-          </button>
+          </a>
         </div>
       </div>
     </Section>

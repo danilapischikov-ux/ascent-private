@@ -9,6 +9,7 @@
     "build:static": "vite build --config vite.static.config.ts",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
+    "preview:static": "node scripts/static-preview.mjs",
     "lint": "eslint .",
     "format": "prettier --write ."
   },

@@ -146,13 +146,12 @@ export function Consulting() {
             решение имеет логику, ограничения и сценарий действий.
           </p>
           <div className="mt-8 flex justify-center">
-            <button
-              type="button"
-              disabled
+            <a
+              href="https://t.me/AscentPrivate_bot"
               className="ascent-button text-primary-foreground bg-gradient-gold shadow-gold"
             >
               Получить доступ
-            </button>
+            </a>
           </div>
         </div>
 
