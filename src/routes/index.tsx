@@ -9,6 +9,7 @@ import { Why } from "@/components/site/Why";
 import { Faq } from "@/components/site/Faq";
 import { Cta } from "@/components/site/Cta";
 import { Footer } from "@/components/site/Footer";
+import { CookieBanner } from "@/components/site/CookieBanner";
 import { Toaster } from "@/components/ui/sonner";
 
 export const Route = createFileRoute("/")({
@@ -46,6 +47,7 @@ function Index() {
       <Faq />
       <Cta />
       <Footer />
+      <CookieBanner />
       <Toaster />
     </main>
   );

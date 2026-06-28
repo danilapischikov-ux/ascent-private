@@ -36,6 +36,14 @@ export function Footer() {
                   </a>
                 </li>
               ))}
+              <li>
+                <a
+                  href="/cookies-policy"
+                  className="text-sm text-muted-foreground hover:text-gold transition whitespace-nowrap"
+                >
+                  Политика Cookies
+                </a>
+              </li>
             </ul>
           </nav>
         </div>

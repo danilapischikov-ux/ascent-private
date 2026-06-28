@@ -10,12 +10,24 @@ import { Why } from "@/components/site/Why";
 import { Faq } from "@/components/site/Faq";
 import { Cta } from "@/components/site/Cta";
 import { Footer } from "@/components/site/Footer";
+import { CookieBanner } from "@/components/site/CookieBanner";
+import { CookiePolicyPage } from "@/components/site/CookiePolicyPage";
 import { Toaster } from "@/components/ui/sonner";
 import "./styles.css";
 
 (window as Window & { __ASCENT_STATIC_BUILD__?: string }).__ASCENT_STATIC_BUILD__ = "2026-05-30-01";
 
 function StaticApp() {
+  if (window.location.pathname === "/cookies-policy") {
+    return (
+      <>
+        <CookiePolicyPage />
+        <CookieBanner />
+        <Toaster />
+      </>
+    );
+  }
+
   return (
     <main className="min-h-screen bg-background text-foreground">
       <Nav />
@@ -28,6 +40,7 @@ function StaticApp() {
       <Faq />
       <Cta />
       <Footer />
+      <CookieBanner />
       <Toaster />
     </main>
   );
