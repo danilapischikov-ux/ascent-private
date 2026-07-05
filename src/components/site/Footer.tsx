@@ -44,6 +44,14 @@ export function Footer() {
                   Политика Cookies
                 </a>
               </li>
+              <li>
+                <a
+                  href="/private-policy/"
+                  className="text-sm text-muted-foreground hover:text-gold transition whitespace-nowrap"
+                >
+                  Политика обработки ПД
+                </a>
+              </li>
             </ul>
           </nav>
         </div>

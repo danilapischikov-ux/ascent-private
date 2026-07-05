@@ -12,6 +12,7 @@ import { Cta } from "@/components/site/Cta";
 import { Footer } from "@/components/site/Footer";
 import { CookieBanner } from "@/components/site/CookieBanner";
 import { CookiePolicyPage } from "@/components/site/CookiePolicyPage";
+import { PersonalDataPolicyPage } from "@/components/site/PersonalDataPolicyPage";
 import { Toaster } from "@/components/ui/sonner";
 import "./styles.css";
 
@@ -22,6 +23,19 @@ function StaticApp() {
     return (
       <>
         <CookiePolicyPage />
+        <CookieBanner />
+        <Toaster />
+      </>
+    );
+  }
+
+  if (
+    window.location.pathname === "/private-policy" ||
+    window.location.pathname === "/private-policy/"
+  ) {
+    return (
+      <>
+        <PersonalDataPolicyPage />
         <CookieBanner />
         <Toaster />
       </>

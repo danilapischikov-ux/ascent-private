@@ -1069,6 +1069,49 @@
     background: var(--gold);
     box-shadow: 0 0 14px oklch(0.82 0.115 82 / 32%);
   }
+  .policy-card .policy-title {
+    margin-bottom: 1.75rem;
+    color: var(--foreground);
+    font-family: var(--font-display);
+    font-size: clamp(2.7rem, 6vw, 5.6rem);
+    line-height: 0.98;
+    letter-spacing: 0;
+  }
+  .policy-card .policy-heading {
+    margin-top: 2.25rem;
+    margin-bottom: 1rem;
+    color: var(--gold);
+    font-family: var(--font-display);
+    font-size: clamp(1.55rem, 2.8vw, 2.35rem);
+    line-height: 1.1;
+    letter-spacing: 0;
+  }
+  .policy-card .policy-title + .policy-heading {
+    margin-top: 0;
+  }
+  .policy-card p {
+    color: var(--muted-foreground);
+    font-size: 0.98rem;
+    line-height: 1.78;
+  }
+  .policy-card p + p {
+    margin-top: 1rem;
+  }
+  .policy-card .policy-bullet {
+    position: relative;
+    padding-left: 1.2rem;
+  }
+  .policy-card .policy-bullet::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 0.34rem;
+    height: 0.34rem;
+    border-radius: 999px;
+    background: var(--gold);
+    box-shadow: 0 0 14px oklch(0.82 0.115 82 / 32%);
+  }
 }
 
 @keyframes ascent-reveal {
@@ -1165,6 +1208,17 @@
   }
   .policy-section p,
   .policy-section li {
+    font-size: 0.9rem;
+    line-height: 1.68;
+  }
+  .policy-card .policy-title {
+    font-size: clamp(2.25rem, 13vw, 3.4rem);
+    line-height: 1.02;
+  }
+  .policy-card .policy-heading {
+    font-size: clamp(1.45rem, 8vw, 2rem);
+  }
+  .policy-card p {
     font-size: 0.9rem;
     line-height: 1.68;
   }
