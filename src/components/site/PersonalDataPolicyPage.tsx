@@ -97,7 +97,7 @@ const policyText = `Политика в отношении обработки п
 12.2. В данном документе будут отражены любые изменения политики обработки персональных данных Оператором. Политика действует бессрочно до замены ее новой версией.
 12.3. Актуальная версия Политики в свободном доступе расположена в сети Интернет по адресу https://ascentprivate.com/private-policy/.`;
 
-const [policyTitle, ...paragraphs] = policyText.split("\n");
+const [, ...paragraphs] = policyText.split("\n");
 
 const sectionTitles = new Map([
   ["Общие положения", "1. Общие положения"],
@@ -222,8 +222,8 @@ export function PersonalDataPolicyPage() {
           <div className="mb-10 mx-auto max-w-4xl text-center">
             <p className="mb-5 text-xs uppercase tracking-[0.28em] text-gold">Ascent Private</p>
             <h1 className="text-5xl leading-none sm:text-6xl md:text-7xl">
-              {policyTitle.replace("персональных данных", "")}
-              <span className="text-gold italic">персональных данных</span>
+              <span className="block">Политика в отношении обработки</span>
+              <span className="block text-gold italic">персональных данных</span>
             </h1>
           </div>
 
