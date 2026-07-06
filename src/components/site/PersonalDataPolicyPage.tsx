@@ -219,11 +219,11 @@ export function PersonalDataPolicyPage() {
             Вернуться на главную
           </a>
 
-          <div className="mb-10 mx-auto max-w-4xl text-center">
+          <div className="mb-10 mx-auto max-w-7xl text-center">
             <p className="mb-5 text-xs uppercase tracking-[0.28em] text-gold">Ascent Private</p>
             <h1 className="text-5xl leading-none sm:text-6xl md:text-7xl">
-              <span className="block">Политика в отношении обработки</span>
-              <span className="block text-gold italic">персональных данных</span>
+              <span className="block whitespace-nowrap">Политика в отношении обработки</span>
+              <span className="block whitespace-nowrap text-gold italic">персональных данных</span>
             </h1>
           </div>
 
