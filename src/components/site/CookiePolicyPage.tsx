@@ -108,7 +108,7 @@ export function CookiePolicyPage() {
             Вернуться на главную
           </a>
 
-          <div className="mb-10 max-w-4xl">
+          <div className="mb-10 mx-auto max-w-4xl text-center">
             <p className="mb-5 text-xs uppercase tracking-[0.28em] text-gold">Ascent Private</p>
             <h1 className="text-5xl leading-none sm:text-6xl md:text-7xl">
               Политика использования <span className="text-gold italic">файлов Cookies</span>

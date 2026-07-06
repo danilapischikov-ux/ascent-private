@@ -1038,12 +1038,14 @@
     font-size: clamp(1.75rem, 3vw, 2.45rem);
     line-height: 1.08;
     letter-spacing: 0;
+    text-align: center;
   }
   .policy-section p,
   .policy-section li {
     color: var(--muted-foreground);
     font-size: 0.98rem;
     line-height: 1.78;
+    text-align: justify;
   }
   .policy-section p + p,
   .policy-section ul + p {
@@ -1085,6 +1087,7 @@
     font-size: clamp(1.55rem, 2.8vw, 2.35rem);
     line-height: 1.1;
     letter-spacing: 0;
+    text-align: center;
   }
   .policy-card .policy-title + .policy-heading {
     margin-top: 0;
@@ -1093,24 +1096,50 @@
     color: var(--muted-foreground);
     font-size: 0.98rem;
     line-height: 1.78;
+    text-align: justify;
   }
   .policy-card p + p {
     margin-top: 1rem;
   }
   .policy-card .policy-bullet {
     position: relative;
-    padding-left: 1.2rem;
+    padding-left: 0;
   }
   .policy-card .policy-bullet::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0.72em;
-    width: 0.34rem;
-    height: 0.34rem;
-    border-radius: 999px;
-    background: var(--gold);
-    box-shadow: 0 0 14px oklch(0.82 0.115 82 / 32%);
+    display: none;
+  }
+  .policy-purpose-tables {
+    display: grid;
+    gap: 1.2rem;
+    margin-top: 1.35rem;
+  }
+  .policy-purpose-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--muted-foreground);
+    font-size: 0.98rem;
+    line-height: 1.78;
+    text-align: justify;
+  }
+  .policy-purpose-table caption {
+    padding: 0.85rem 1rem;
+    border: 1px solid oklch(0.82 0.115 82 / 24%);
+    border-bottom: 0;
+    color: var(--muted-foreground);
+    font: inherit;
+    text-align: center;
+  }
+  .policy-purpose-table th,
+  .policy-purpose-table td {
+    border: 1px solid oklch(0.82 0.115 82 / 24%);
+    padding: 0.85rem 1rem;
+    color: var(--muted-foreground);
+    font: inherit;
+    font-weight: 400;
+    vertical-align: top;
+  }
+  .policy-purpose-table th {
+    width: 32%;
   }
 }
 
@@ -1221,6 +1250,21 @@
   .policy-card p {
     font-size: 0.9rem;
     line-height: 1.68;
+  }
+  .policy-purpose-table,
+  .policy-purpose-table caption,
+  .policy-purpose-table th,
+  .policy-purpose-table td {
+    font-size: 0.9rem;
+    line-height: 1.68;
+  }
+  .policy-purpose-table th,
+  .policy-purpose-table td {
+    display: block;
+    width: 100%;
+  }
+  .policy-purpose-table td {
+    border-top: 0;
   }
   .section-shell::before,
   .section-shell::after {
