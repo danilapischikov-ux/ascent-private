@@ -227,6 +227,17 @@ export function PersonalDataPolicyPage() {
             </h1>
           </div>
 
+          <p className="policy-download">
+            <a
+              href="https://cloud.mail.ru/public/zKKs/rEs72BJGc"
+              className="policy-download-link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Скачать Политику в отношении обработки персональных данных
+            </a>
+          </p>
+
           <article className="policy-card">
             {paragraphs.map((paragraph, index) => {
               const sectionHeading = getSectionHeading(paragraph);

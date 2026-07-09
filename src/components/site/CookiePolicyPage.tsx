@@ -115,6 +115,17 @@ export function CookiePolicyPage() {
             </h1>
           </div>
 
+          <p className="policy-download">
+            <a
+              href="https://cloud.mail.ru/public/GUFN/1hRa65MZ8"
+              className="policy-download-link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Скачать Политику использования файлов Cookies
+            </a>
+          </p>
+
           <article className="policy-card">
             {policySections.map((section) => (
               <section key={section.title} className="policy-section">

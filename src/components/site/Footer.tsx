@@ -52,6 +52,26 @@ export function Footer() {
                   Политика обработки ПД
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://cloud.mail.ru/public/g9Vz/uNb8J6sBZ"
+                  className="text-sm text-muted-foreground hover:text-gold transition whitespace-nowrap"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Оферта
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://cloud.mail.ru/public/rHMn/3P5qucwii"
+                  className="text-sm text-muted-foreground hover:text-gold transition"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Согласие на получение информационной рассылки
+                </a>
+              </li>
             </ul>
           </nav>
         </div>

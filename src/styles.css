@@ -993,6 +993,21 @@
     color: var(--gold-light);
     text-decoration-color: var(--gold-light);
   }
+  .policy-download {
+    margin: 0 auto 2.5rem;
+    color: var(--muted-foreground);
+    font-size: 0.98rem;
+    line-height: 1.78;
+    text-align: center;
+  }
+  .policy-download-link {
+    color: inherit;
+    text-decoration: none;
+    transition: color 180ms ease;
+  }
+  .policy-download-link:hover {
+    color: var(--gold);
+  }
   .cookie-banner-button {
     flex: 0 0 auto;
     min-height: 2.8rem;
@@ -1237,6 +1252,10 @@
   }
   .policy-section p,
   .policy-section li {
+    font-size: 0.9rem;
+    line-height: 1.68;
+  }
+  .policy-download {
     font-size: 0.9rem;
     line-height: 1.68;
   }
