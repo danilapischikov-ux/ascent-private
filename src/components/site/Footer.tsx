@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import logo from "@/assets/logo.jpg";
+
+const paymentLeadsEndpoint = import.meta.env.VITE_PAYMENT_LEADS_ENDPOINT?.trim();
 
 const links = [
   { href: "#solve", label: "Что мы решаем" },
@@ -11,10 +13,61 @@ const links = [
 ];
 
 export function Footer() {
+  const [paymentData, setPaymentData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+  });
   const [acceptedOffer, setAcceptedOffer] = useState(false);
   const [acceptedPolicy, setAcceptedPolicy] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
-  const canPay = acceptedOffer && acceptedPolicy;
+  const [isPaymentSending, setIsPaymentSending] = useState(false);
+  const hasPaymentData =
+    Boolean(paymentData.name.trim()) &&
+    Boolean(paymentData.email.trim()) &&
+    Boolean(paymentData.phone.trim());
+  const canPay = acceptedOffer && acceptedPolicy && hasPaymentData && !isPaymentSending;
+
+  async function handlePaymentSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!paymentLeadsEndpoint) {
+      return;
+    }
+
+    setIsPaymentSending(true);
+
+    try {
+      const response = await fetch(paymentLeadsEndpoint, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "text/plain;charset=utf-8",
+        },
+        body: JSON.stringify({
+          name: paymentData.name.trim(),
+          email: paymentData.email.trim(),
+          phone: paymentData.phone.trim(),
+          acceptedOffer,
+          acceptedPolicy,
+          source: window.location.href,
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+
+      if (response.type !== "opaque" && !response.ok) {
+        throw new Error("Payment lead request failed");
+      }
+
+      setPaymentData({ name: "", email: "", phone: "" });
+      setAcceptedOffer(false);
+      setAcceptedPolicy(false);
+    } catch {
+      // Keep the form filled so the user can try again.
+    } finally {
+      setIsPaymentSending(false);
+    }
+  }
 
   return (
     <footer className="border-t border-border bg-background px-4 sm:px-5 lg:px-10">
@@ -83,7 +136,7 @@ export function Footer() {
 
           <form
             className="payment-form lg:col-span-4"
-            onSubmit={(event) => event.preventDefault()}
+            onSubmit={handlePaymentSubmit}
             aria-label="Форма оплаты"
           >
             <div className="payment-fields">
@@ -92,6 +145,12 @@ export function Footer() {
                 name="name"
                 className="payment-input"
                 placeholder={focusedField === "name" ? "" : "Имя"}
+                value={paymentData.name}
+                required
+                autoComplete="name"
+                onChange={(event) =>
+                  setPaymentData((data) => ({ ...data, name: event.target.value }))
+                }
                 onFocus={() => setFocusedField("name")}
                 onBlur={() => setFocusedField(null)}
               />
@@ -100,6 +159,12 @@ export function Footer() {
                 name="email"
                 className="payment-input"
                 placeholder={focusedField === "email" ? "" : "Эл. почта (Email)"}
+                value={paymentData.email}
+                required
+                autoComplete="email"
+                onChange={(event) =>
+                  setPaymentData((data) => ({ ...data, email: event.target.value }))
+                }
                 onFocus={() => setFocusedField("email")}
                 onBlur={() => setFocusedField(null)}
               />
@@ -108,6 +173,12 @@ export function Footer() {
                 name="phone"
                 className="payment-input"
                 placeholder={focusedField === "phone" ? "" : "Номер телефона"}
+                value={paymentData.phone}
+                required
+                autoComplete="tel"
+                onChange={(event) =>
+                  setPaymentData((data) => ({ ...data, phone: event.target.value }))
+                }
                 onFocus={() => setFocusedField("phone")}
                 onBlur={() => setFocusedField(null)}
               />
@@ -118,7 +189,7 @@ export function Footer() {
               className="ascent-button payment-submit text-primary-foreground bg-gradient-gold shadow-gold"
               disabled={!canPay}
             >
-              Оплатить
+              {isPaymentSending ? "Отправляем..." : "Оплатить"}
             </button>
 
             <div className="payment-checkboxes">
@@ -138,9 +209,8 @@ export function Footer() {
                   onChange={(event) => setAcceptedPolicy(event.target.checked)}
                 />
                 <span>
-                  «Я даю Согласие на обработку моих персональных данных в соответствии с
-                  Политикой. С Политикой обработки персональных данных ознакомлен(а) и
-                  согласен(а).»
+                  «Я даю Согласие на обработку моих персональных данных в соответствии с Политикой.
+                  С Политикой обработки персональных данных ознакомлен(а) и согласен(а).»
                 </span>
               </label>
             </div>
