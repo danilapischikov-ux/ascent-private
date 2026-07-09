@@ -1,4 +1,5 @@
-﻿import logo from "@/assets/logo.jpg";
+import { useState } from "react";
+import logo from "@/assets/logo.jpg";
 
 const links = [
   { href: "#solve", label: "Что мы решаем" },
@@ -10,11 +11,16 @@ const links = [
 ];
 
 export function Footer() {
+  const [acceptedOffer, setAcceptedOffer] = useState(false);
+  const [acceptedPolicy, setAcceptedPolicy] = useState(false);
+  const [focusedField, setFocusedField] = useState<string | null>(null);
+  const canPay = acceptedOffer && acceptedPolicy;
+
   return (
     <footer className="border-t border-border bg-background px-4 sm:px-5 lg:px-10">
       <div className="mx-auto max-w-7xl py-10 sm:py-12 md:py-18">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-4">
             <img src={logo} alt="ASCENT PRIVATE" className="h-14 w-auto rounded-sm mb-6" />
             <p className="text-sm text-muted-foreground leading-relaxed max-w-md">
               Ascent Private — частный финансовый консалтинг для состоятельных инвесторов,
@@ -23,9 +29,9 @@ export function Footer() {
             </p>
           </div>
 
-          <nav className="lg:col-span-4">
+          <nav className="footer-nav lg:col-span-4">
             <p className="text-xs uppercase tracking-[0.26em] text-gold mb-5">Навигация</p>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <ul className="grid grid-cols-1 gap-3">
               {links.map((link) => (
                 <li key={link.href}>
                   <a
@@ -74,10 +80,75 @@ export function Footer() {
               </li>
             </ul>
           </nav>
+
+          <form
+            className="payment-form lg:col-span-4"
+            onSubmit={(event) => event.preventDefault()}
+            aria-label="Форма оплаты"
+          >
+            <div className="payment-fields">
+              <input
+                type="text"
+                name="name"
+                className="payment-input"
+                placeholder={focusedField === "name" ? "" : "Имя"}
+                onFocus={() => setFocusedField("name")}
+                onBlur={() => setFocusedField(null)}
+              />
+              <input
+                type="email"
+                name="email"
+                className="payment-input"
+                placeholder={focusedField === "email" ? "" : "Эл. почта (Email)"}
+                onFocus={() => setFocusedField("email")}
+                onBlur={() => setFocusedField(null)}
+              />
+              <input
+                type="tel"
+                name="phone"
+                className="payment-input"
+                placeholder={focusedField === "phone" ? "" : "Номер телефона"}
+                onFocus={() => setFocusedField("phone")}
+                onBlur={() => setFocusedField(null)}
+              />
+            </div>
+
+            <button
+              type="submit"
+              className="ascent-button payment-submit text-primary-foreground bg-gradient-gold shadow-gold"
+              disabled={!canPay}
+            >
+              Оплатить
+            </button>
+
+            <div className="payment-checkboxes">
+              <label className="payment-checkbox-row">
+                <input
+                  type="checkbox"
+                  checked={acceptedOffer}
+                  onChange={(event) => setAcceptedOffer(event.target.checked)}
+                />
+                <span>«Я принимаю условия Оферты»</span>
+              </label>
+
+              <label className="payment-checkbox-row">
+                <input
+                  type="checkbox"
+                  checked={acceptedPolicy}
+                  onChange={(event) => setAcceptedPolicy(event.target.checked)}
+                />
+                <span>
+                  «Я даю Согласие на обработку моих персональных данных в соответствии с
+                  Политикой. С Политикой обработки персональных данных ознакомлен(а) и
+                  согласен(а).»
+                </span>
+              </label>
+            </div>
+          </form>
         </div>
 
         <div className="mt-10 sm:mt-12 pt-7 sm:pt-8 border-t border-border">
-          <p className="text-xs text-muted-foreground/82 leading-relaxed">
+          <p className="text-xs text-muted-foreground/82 leading-relaxed text-justify">
             Ascent Private не является зарегистрированным инвестиционным консультантом (RIA),
             брокером-дилером, финансовым аналитиком, брокерской компанией или инвестиционной фирмой.
             Информация на сайте носит исключительно информационно-аналитический характер и не

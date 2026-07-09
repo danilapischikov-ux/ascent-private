@@ -1156,6 +1156,83 @@
   .policy-purpose-table th {
     width: 32%;
   }
+  .footer-nav {
+    align-self: stretch;
+  }
+  .payment-form {
+    display: flex;
+    flex-direction: column;
+    align-self: stretch;
+    justify-self: end;
+    width: min(100%, 23.5rem);
+    border: 1px solid oklch(0.82 0.115 82 / 24%);
+    background:
+      radial-gradient(at 84% 0%, oklch(0.82 0.115 82 / 12%), transparent 36%),
+      oklch(0.13 0.007 72 / 72%);
+    box-shadow:
+      0 24px 70px oklch(0 0 0 / 34%),
+      inset 0 1px 0 oklch(0.82 0.115 82 / 10%);
+    backdrop-filter: blur(12px);
+    padding: clamp(1rem, 2vw, 1.35rem);
+  }
+  .payment-fields {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .payment-input {
+    width: 100%;
+    min-height: 3.25rem;
+    border: 1px solid oklch(0.82 0.115 82 / 30%);
+    border-radius: 0.35rem;
+    background: oklch(0.09 0.006 70 / 58%);
+    color: var(--foreground);
+    padding: 0.8rem 0.95rem;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    outline: none;
+    transition:
+      border-color 180ms ease,
+      box-shadow 180ms ease,
+      background 180ms ease;
+  }
+  .payment-input::placeholder {
+    color: var(--muted-foreground);
+    font-style: italic;
+    opacity: 0.3;
+  }
+  .payment-input:focus {
+    border-color: var(--gold);
+    background: oklch(0.1 0.008 70 / 76%);
+    box-shadow: 0 0 0 3px oklch(0.82 0.115 82 / 14%);
+  }
+  .payment-input:focus::placeholder {
+    color: transparent;
+  }
+  .payment-submit {
+    width: 100%;
+    margin-top: 1rem;
+    justify-content: center;
+  }
+  .payment-checkboxes {
+    display: grid;
+    gap: 0.85rem;
+    margin-top: 1.2rem;
+  }
+  .payment-checkbox-row {
+    display: grid;
+    grid-template-columns: 1.15rem 1fr;
+    gap: 0.72rem;
+    align-items: start;
+    color: var(--muted-foreground);
+    font-size: 0.82rem;
+    line-height: 1.55;
+  }
+  .payment-checkbox-row input {
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-top: 0.08rem;
+    accent-color: var(--gold);
+  }
 }
 
 @keyframes ascent-reveal {
@@ -1284,6 +1361,17 @@
   }
   .policy-purpose-table td {
     border-top: 0;
+  }
+  .payment-form {
+    justify-self: stretch;
+    width: 100%;
+  }
+  .payment-input {
+    min-height: 3rem;
+    font-size: 0.9rem;
+  }
+  .payment-checkbox-row {
+    font-size: 0.82rem;
   }
   .section-shell::before,
   .section-shell::after {
