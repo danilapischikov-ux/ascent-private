@@ -159,6 +159,14 @@ export function Faq() {
               [{category.title}]
             </button>
           ))}
+          <a
+            href="https://t.me/AscentPrivate_bot"
+            className="faq-category-tab"
+            target="_blank"
+            rel="noreferrer"
+          >
+            [Задать свой вопрос]
+          </a>
         </div>
 
         <Accordion
