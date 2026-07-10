@@ -38,25 +38,37 @@ export function Footer() {
     setIsPaymentSending(true);
 
     try {
-      const response = await fetch(paymentLeadsEndpoint, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8",
-        },
-        body: JSON.stringify({
-          name: paymentData.name.trim(),
-          email: paymentData.email.trim(),
-          phone: paymentData.phone.trim(),
-          acceptedOffer,
-          acceptedPolicy,
-          source: window.location.href,
-          submittedAt: new Date().toISOString(),
-        }),
-      });
+      const payload = {
+        name: paymentData.name.trim(),
+        email: paymentData.email.trim(),
+        phone: paymentData.phone.trim(),
+        acceptedOffer,
+        acceptedPolicy,
+        source: window.location.href,
+        submittedAt: new Date().toISOString(),
+      };
+      const body = JSON.stringify(payload);
+      const sentByBeacon =
+        "sendBeacon" in navigator &&
+        navigator.sendBeacon(
+          paymentLeadsEndpoint,
+          new Blob([body], { type: "text/plain;charset=utf-8" }),
+        );
 
-      if (response.type !== "opaque" && !response.ok) {
-        throw new Error("Payment lead request failed");
+      if (!sentByBeacon) {
+        const response = await fetch(paymentLeadsEndpoint, {
+          method: "POST",
+          mode: "no-cors",
+          keepalive: true,
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8",
+          },
+          body,
+        });
+
+        if (response.type !== "opaque" && !response.ok) {
+          throw new Error("Payment lead request failed");
+        }
       }
 
       setPaymentData({ name: "", email: "", phone: "" });
