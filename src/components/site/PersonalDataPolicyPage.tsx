@@ -229,7 +229,7 @@ export function PersonalDataPolicyPage() {
 
           <p className="policy-download">
             <a
-              href="https://cloud.mail.ru/public/zKKs/rEs72BJGc"
+              href="https://cloud.mail.ru/public/zUgW/XAf9gZrwH"
               className="policy-download-link"
               target="_blank"
               rel="noreferrer"

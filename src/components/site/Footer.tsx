@@ -125,7 +125,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://cloud.mail.ru/public/g9Vz/uNb8J6sBZ"
+                  href="https://cloud.mail.ru/public/zUgW/XAf9gZrwH"
                   className="text-sm text-muted-foreground hover:text-gold transition whitespace-nowrap"
                   target="_blank"
                   rel="noreferrer"
