@@ -36,6 +36,10 @@ class PasswordSecurityTests(unittest.TestCase):
     def test_password_policy_rejects_excessive_length(self) -> None:
         self.assertFalse(validate_password("A1" + ("a" * 255)))
 
+    def test_password_policy_accepts_eight_characters_and_rejects_seven(self) -> None:
+        self.assertTrue(validate_password("Abcdefg1"))
+        self.assertFalse(validate_password("Abcdef1"))
+
 
 if __name__ == "__main__":
     unittest.main()
