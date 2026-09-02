@@ -35,7 +35,7 @@ def create_temporary_password() -> str:
 
 def validate_password(password: str) -> bool:
     return (
-        len(password) >= 12
+        12 <= len(password) <= 256
         and any(char.isalpha() for char in password)
         and any(char.isdigit() for char in password)
     )

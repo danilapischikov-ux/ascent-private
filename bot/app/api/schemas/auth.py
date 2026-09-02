@@ -1,4 +1,4 @@
-from pydantic import BaseModel, ConfigDict, EmailStr, Field
+from pydantic import BaseModel, ConfigDict, EmailStr, Field, SecretStr
 
 from app.api.schemas.events import EventAttribution
 
@@ -19,12 +19,12 @@ class RegisterRequest(BaseModel):
 
 class LoginRequest(BaseModel):
     identifier: str = Field(min_length=1, max_length=255)
-    password: str = Field(min_length=1, max_length=256)
+    password: SecretStr
 
 
 class ChangePasswordRequest(BaseModel):
-    current_password: str = Field(min_length=1, max_length=256)
-    new_password: str = Field(min_length=12, max_length=256)
+    current_password: SecretStr
+    new_password: SecretStr
 
 
 class ResendConfirmationRequest(BaseModel):
@@ -36,5 +36,5 @@ class RequestPasswordResetRequest(BaseModel):
 
 
 class ResetPasswordRequest(BaseModel):
-    token: str = Field(min_length=16, max_length=256)
-    new_password: str = Field(min_length=12, max_length=256)
+    token: SecretStr
+    new_password: SecretStr

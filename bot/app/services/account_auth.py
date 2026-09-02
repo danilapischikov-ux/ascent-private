@@ -166,6 +166,8 @@ async def resend_confirmation(session: AsyncSession, settings: Settings, email: 
 
 
 async def authenticate(session: AsyncSession, identifier: str, password: str) -> tuple[WebAccount, AccessEntitlement] | None:
+    if not password or len(password) > 256:
+        return None
     account = await get_account_by_identifier(session, identifier)
     if account is None or account.status != "active" or account.email_verified_at is None or not account.password_hash:
         return None

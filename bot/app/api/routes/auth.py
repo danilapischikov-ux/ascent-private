@@ -109,7 +109,7 @@ async def login(
 ) -> dict:
     settings = get_settings()
     _require_allowed_origin(request, settings)
-    authenticated = await account_auth.authenticate(session, payload.identifier, payload.password)
+    authenticated = await account_auth.authenticate(session, payload.identifier, payload.password.get_secret_value())
     if authenticated is None:
         await session.rollback()
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
@@ -131,7 +131,13 @@ async def change_password(
     settings = get_settings()
     _require_allowed_origin(request, settings)
     account, _entitlement, web_session = await _current_auth(request, session, settings)
-    if not await account_auth.change_password(session, account, payload.current_password, payload.new_password, web_session):
+    if not await account_auth.change_password(
+        session,
+        account,
+        payload.current_password.get_secret_value(),
+        payload.new_password.get_secret_value(),
+        web_session,
+    ):
         await session.rollback()
         raise HTTPException(status_code=422, detail="Current password or new password is invalid")
     await session.commit()
@@ -206,7 +212,11 @@ async def reset_password(
 ) -> dict[str, bool]:
     settings = get_settings()
     _require_allowed_origin(request, settings)
-    account = await account_auth.reset_password(session, payload.token, payload.new_password)
+    account = await account_auth.reset_password(
+        session,
+        payload.token.get_secret_value(),
+        payload.new_password.get_secret_value(),
+    )
     if account is None:
         await session.rollback()
         raise HTTPException(status_code=422, detail="Reset token or password is invalid")

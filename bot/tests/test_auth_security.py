@@ -33,6 +33,9 @@ class PasswordSecurityTests(unittest.TestCase):
         self.assertTrue(validate_password(password))
         self.assertGreaterEqual(len(password), 12)
 
+    def test_password_policy_rejects_excessive_length(self) -> None:
+        self.assertFalse(validate_password("A1" + ("a" * 255)))
+
 
 if __name__ == "__main__":
     unittest.main()

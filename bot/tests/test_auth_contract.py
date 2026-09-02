@@ -42,6 +42,16 @@ class RegistrationContractTests(BackendContractTestCase):
             )
 
 
+class SecretFieldContractTests(BackendContractTestCase):
+    def test_password_validation_does_not_echo_the_submitted_value(self) -> None:
+        _Response, _ValidationError, _set_session_cookie, _RegisterRequest, _Settings, _hash_secret, _build_auth_summary = self.imports()
+        from app.api.schemas.auth import ChangePasswordRequest
+
+        request = ChangePasswordRequest(current_password="CurrentPassword123", new_password="short")
+        self.assertEqual(request.new_password.get_secret_value(), "short")
+        self.assertNotIn("short", repr(request))
+
+
 class AuthResponseContractTests(BackendContractTestCase):
     def test_summary_contains_only_safe_website_account_data(self) -> None:
         _Response, _ValidationError, _set_session_cookie, _RegisterRequest, _Settings, _hash_secret, build_auth_summary = self.imports()
