@@ -55,7 +55,7 @@ After this work, a client can register with a name, email, and phone number, con
 - Decision: Include configured development CORS origins only when `APP_ENV` is not production.
   Rationale: allowing localhost origins together with credentialed production requests would unnecessarily expose an authenticated browser session to a locally hosted origin.
   Date/Author: 2026-08-27 / Codex.
-- Decision: MVP user-selected passwords for change and reset operations must be 8–256 characters with at least one letter and one digit. Do not increase the minimum to 12 without explicit product approval. The generated temporary password remains a separate 16-character random credential.
+- Decision: MVP user-selected passwords for change and reset operations must be 8–256 characters with at least one letter and one digit. Do not increase the minimum without explicit product approval. The generated temporary password remains a separate 16-character random credential.
   Rationale: this is the accepted MVP product policy, while the longer generated temporary password retains additional initial-credential entropy.
   Date/Author: 2026-09-02 / Product decision recorded by Codex.
 
